@@ -14,22 +14,27 @@ const STAGES = [
     {
         "name": "Foco",
         "minutes": FOCUS,
+        "count": 1
     },
     {
         "name": "Pausa Curta",
         "minutes": SMALL_BREAK,
+        "count": 1
     },
     {
         "name": "Foco",
         "minutes": FOCUS,
+        "count": 2
     },
     {
         "name": "Pausa Curta",
         "minutes": SMALL_BREAK,
+        "count": 2
     },
     {
         "name": "Foco",
         "minutes": FOCUS,
+        "count": 3
     },
     {
         "name": "Pausa Longa",
@@ -40,6 +45,8 @@ const STAGES = [
 const getStageName = () => STAGES[stage].name
 
 const getStageTime = () => STAGES[stage].minutes
+
+const getStageCount = () => STAGES[stage].count ? STAGES[stage].count : null
 
 const resetStage = () => stage = 0
 
@@ -58,11 +65,12 @@ const addMinutes = (initial, add) => {
 const setTimer = (minutes, seconds) => {
     const timer = `${minutes}:${seconds}`
     document.getElementById('countdown').innerHTML = timer
+    document.getElementById('stage_title').innerHTML = `${getStageName()} #${getStageCount()}`
     document.title = `${minutes}:${seconds} - ${getStageName()}`
 }
 
 const nextStage = () => {
-    stage = !STAGES.stage ? resetStage() : stage + 1
+    stage = !STAGES[stage] ? resetStage() : stage + 1
     countDown()
 }
 
@@ -77,7 +85,7 @@ const countDown = () => {
         if (seconds < 10) seconds = `0${seconds}`
 
         setTimer(minutes, seconds)
-        if (distance < 0) {
+        if (distance <= 0) {
             clearInterval(interval)
             nextStage()
         }
