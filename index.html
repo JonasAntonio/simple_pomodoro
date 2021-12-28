@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <div id="main">
+        <div id="stage">
+            Foco #1
+        </div>
+        <div id="timer">
+            <span id="countdown">25:00</span>
+        </div>
+    </div>
+</body>
+<script src="script/timer.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        start()
+    })
+</script>
+</html>

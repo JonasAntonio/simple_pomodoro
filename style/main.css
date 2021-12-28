@@ -1,0 +1,17 @@
+body {
+    background-color: #1c1c1c;
+    font-family: 'Roboto', sans-serif;
+}
+
+#main {
+    color: #b7b7b7;
+    text-align: center;
+}
+
+#stage {
+    font-size: 5em;
+}
+
+#timer {
+    font-size: 10em;
+}
