@@ -48,7 +48,14 @@ const getStageTime = () => STAGES[stage].minutes
 
 const getStageCount = () => STAGES[stage].count ? STAGES[stage].count : null
 
-const resetStage = () => stage = 0
+const nextStage = () => {
+    const currentStage = STAGES[stage]
+    stage = !STAGES[stage] ? 0 : stage + 1
+    notifyNextStage(currentStage)
+    countDown()
+}
+
+const notifyNextStage = (currentStage) => notify(`Concluído`, `${currentStage.name} #${currentStage.count} concluído!`)
 
 const start = () => {
     stage = 0
@@ -69,17 +76,12 @@ const setTimer = (minutes, seconds) => {
     document.title = `${minutes}:${seconds} - ${getStageName()}`
 }
 
-const nextStage = () => {
-    stage = !STAGES[stage] ? resetStage() : stage + 1
-    countDown()
-}
-
 const countDown = () => {
     const countDownDate = addMinutes(getNow(), getStageTime())
     let interval = setInterval(function () {
         const distance = countDownDate - getNow()
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
         if (minutes < 10) minutes = `0${minutes}`
         if (seconds < 10) seconds = `0${seconds}`
@@ -87,9 +89,18 @@ const countDown = () => {
         setTimer(minutes, seconds)
         if (distance <= 0) {
             clearInterval(interval)
+            playAudio()
             nextStage()
         }
     }, 1000)
+}
+
+const playAudio = () => {
+    const sound = new Audio('../sound/done.wav')
+    sound.play()
+    sound.loop =true
+    sound.playbackRate = 2
+    sound.pause()
 }
 
 // }
