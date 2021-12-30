@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/button.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
@@ -20,11 +21,15 @@
         <div id="timer">
             <span id="countdown">25:00</span>
         </div>
+        <div id="start">
+            <button class="btn draw-border" id="btn_start" value="">Start</button>
+        </div>
     </div>
 </body>
 <script src="script/notification.js"></script>
+<script src="script/start.js"></script>
 <script src="script/timer.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => start())
+    document.addEventListener('DOMContentLoaded', () => run())
 </script>
 </html>

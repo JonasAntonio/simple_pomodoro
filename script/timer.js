@@ -7,8 +7,8 @@
 let stage = 0
 
 const SMALL_BREAK = 5   // minutes
-const LONG_BREAK  = 15  // minutes
-const FOCUS       = 25  // minutes
+const LONG_BREAK = 15  // minutes
+const FOCUS = 25  // minutes
 
 const STAGES = [
     {
@@ -49,9 +49,8 @@ const getStageTime = () => STAGES[stage].minutes
 const getStageCount = () => STAGES[stage].count ? STAGES[stage].count : null
 
 const nextStage = () => {
-    const currentStage = STAGES[stage]
+    notifyNextStage(STAGES[stage])
     stage = !STAGES[stage] ? 0 : stage + 1
-    notifyNextStage(currentStage)
     countDown()
 }
 
@@ -89,17 +88,17 @@ const countDown = () => {
         setTimer(minutes, seconds)
         if (distance <= 0) {
             clearInterval(interval)
-            playAudio()
+            // playAudio()
             nextStage()
         }
     }, 1000)
 }
 
 const playAudio = () => {
-    const sound = new Audio('../sound/done.wav')
+    const sound = new Audio('done.wav')
     sound.play()
-    sound.loop =true
-    sound.playbackRate = 2
+    sound.loop = false
+    sound.playbackRate = 1
     sound.pause()
 }
 
