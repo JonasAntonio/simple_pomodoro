@@ -52,3 +52,16 @@
 .btn:focus {
   outline: 2px dotted #55d7dc;
 }
+
+#buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#start {
+  flex: 50%;
+}
+
+#reset {
+  flex: 50%;
+}
